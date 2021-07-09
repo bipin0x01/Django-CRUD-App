@@ -3,5 +3,24 @@
 
 
 {% block content %}
-<h1>This is the writers List.</h1>
+<table class="table">
+    <thead class="thead-dark">
+        <tr>
+            <td scope="col">#</th>
+            <td scope="col">Name</th>
+            <td scope="col">Phone Number</th>
+            <td scope="col">Experience</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for writer in writers_list %}
+            <tr>
+                <td>{{forloop.counter}}</td>
+                <td>{{writer.fullname}}</td>
+                <td>{{writer.mobile}}</td>
+                <td>{{writer.experience}}</td>
+            </tr>
+        {% endfor %}
+    </tbody>
+</table>
 {% endblock content %}

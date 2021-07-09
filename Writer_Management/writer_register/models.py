@@ -5,6 +5,9 @@ from django.db.models.deletion import CASCADE
 class experience(models.Model):
     title = models.CharField(max_length=40)
 
+    def __str__(self):
+        return self.title
+
 class Writers(models.Model):
     fullname = models.CharField(max_length=50)
     writer_uid = models.CharField(max_length=4)

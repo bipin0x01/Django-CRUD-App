@@ -1,6 +1,15 @@
 {% extends 'writer_register/base.html' %}
-
+{% load crispy_forms_tags %}
 
 
 {% block content %}
+<form action="" method='POST' autocomplete='off'>
+{%csrf_token%}
+{{form.fullname | as_crispy_field}}
+<div class="form-row">
+<div class="col">{{form.mobile | as_crispy_field}}</div>
+<div class="col">{{form.experience | as_crispy_field}}</div>
+</div>
+<input class="mt-2" type="submit" value="Submit">
+</form>
 {% endblock content %}

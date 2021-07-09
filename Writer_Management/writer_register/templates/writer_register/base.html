@@ -18,9 +18,12 @@
     <div class="jumbotron">
       <h1 class="text-uppercase">Writers Portal</h1>
       <p class="lead txt-3 blockquote-footer">Python Django CRUD Application created by Bipin Thapa.</p>
+      <hr class="my-6 ">
+      <div class="form">
+        {% block content%}
+        {% endblock content %}
+      </div>
     </div>
-    {% block content%}
-    {% endblock content %}
   </div>
 
 
