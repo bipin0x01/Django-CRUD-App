@@ -7,22 +7,31 @@ def writers_list(request):
     context = {'writers_list' : Writers.objects.all()}
     return render(request,"writer_register/writers_list.html",context)
 
-def writers_form(request):
+def writers_form(request,id=0):
     form = WritersForm()
     if request.method == 'POST':
-        # create a form instance and populate it with data from the request:
-        form = WritersForm(request.POST)
+        if id==0:     #If Insert operation
+            form = WritersForm(request.POST)   # create a form instance and populate it with data from the request:
+        else:  #if update operation
+            writers = Writers.objects.get(pk=id)   #get the id parameter from url
+            form = WritersForm(request.POST,writers)   #update the data from the recent input and update the data.
         # check whether it's valid:
         if form.is_valid():
-            # process the data in form.cleaned_data as required
+            # If form is validated, submit it.
             form.save()
-            # redirect to a new URL:
+            # then redirect to a new URL which is the list:
             return redirect('/writers/list/')
 
     # if a GET (or any other method) we'll create a blank form
     else:
-        form = WritersForm()
+        if id==0:
+            form = WritersForm()
+        else:
+            writers = Writers.objects.get(pk=id)
+            form = WritersForm(instance=writers)
     return render(request,"writer_register/writers_form.html",{'form':form})
 
-def writers_delete(request):
-    return
+def writers_delete(render,id):
+    writers = Writers.objects.get(pk=id)
+    writers.delete()
+    return redirect('/writers/list')

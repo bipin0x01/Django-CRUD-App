@@ -4,12 +4,15 @@
 
 {% block content %}
 <form action="" method='POST' autocomplete='off'>
-{%csrf_token%}
-{{form.fullname | as_crispy_field}}
-<div class="form-row">
-<div class="col">{{form.mobile | as_crispy_field}}</div>
-<div class="col">{{form.experience | as_crispy_field}}</div>
-</div>
-<input class="mt-2" type="submit" value="Submit">
+    {%csrf_token%}
+    <div class="row">
+        <div class="col">{{form.fullname | as_crispy_field}}</div>
+        <div class="col">{{form.mobile | as_crispy_field}}</div>
+        <div class="col pr-1">{{form.experience | as_crispy_field}}</div>
+    </div>
+    <div class='row mt-2'>
+        <div  class="col-md-8"><button type="submit" class="btn btn-success btn-block">Submit</button></div>
+        <div class="col-md-4"><a href={% url 'writers_list' %} class="btn btn-secondary btn-block">Go to List</a></div>
+    </div>
 </form>
 {% endblock content %}
