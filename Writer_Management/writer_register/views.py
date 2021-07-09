@@ -14,7 +14,7 @@ def writers_form(request,id=0):
             form = WritersForm(request.POST)   # create a form instance and populate it with data from the request:
         else:  #if update operation
             writers = Writers.objects.get(pk=id)   #get the id parameter from url
-            form = WritersForm(request.POST,writers)   #update the data from the recent input and update the data.
+            form = WritersForm(request.POST,instance=writers)   #update the data from the recent input and update the data.
         # check whether it's valid:
         if form.is_valid():
             # If form is validated, submit it.
